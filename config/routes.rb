@@ -3,7 +3,7 @@ Thegame::Application.routes.draw do
 
   get "notes/destroy"
 
-  get "stocks/show"
+  match "stocks/show" =>"stocks#show", :as=>"stock_show"
   
   
   match "stocks/change_ticker"=>"stocks#change_ticker"
@@ -12,7 +12,7 @@ Thegame::Application.routes.draw do
 
   get "stocks/sma"
 
-  match "retrieve/image" =>"stocks#retrieve",  :as=>"retrieve_image"
+  match "retrieve/:file_name" =>"stocks#retrieve",  :as=>"retrieve_image"
   root :to=>"stocks#show"
 
   # The priority is based upon order of creation:

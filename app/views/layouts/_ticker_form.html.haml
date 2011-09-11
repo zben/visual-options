@@ -1,5 +1,7 @@
-= form_for(:ticker, :url=>{ :action =>"change_ticker", :controller =>"stocks"}) do |f|
+= form_for(:stock, :url=>{ :action =>"show", :controller =>"stocks"}) do |f|
     =f.text_field :ticker 
+    =f.text_field :duration
+    =f.select "colors", "<option>Red</option><option>Green</option><option>Blue</option>".html_safe, :multiple => true
     =f.submit 'Submit'
     
 
