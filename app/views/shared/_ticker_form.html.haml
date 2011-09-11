@@ -1,0 +1,9 @@
+= form_tag stock_show_path do
+    =text_field_tag :ticker,session[:ticker]
+    =select_tag "duration", options_for_select(duration_select,[session[:duration]]) , {:multiple=>true}
+    =select_tag "option_type", options_for_select(option_type,[session[:option_type]]) , {:multiple=>true}
+    =select_tag "expiration", options_for_select(expiration_list,[session[:expiration]]) , {:multiple=>true}
+    =text_field_tag :strike, session[:strike]
+    =submit_tag 'Submit'
+    
+
