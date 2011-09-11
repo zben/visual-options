@@ -11,7 +11,8 @@ Thegame::Application.routes.draw do
   get "stocks/options"
 
   get "stocks/sma"
-  
+
+  match "retrieve/image" =>"stocks#retrieve",  :as=>"retrieve_image"
   root :to=>"stocks#show"
 
   # The priority is based upon order of creation:
