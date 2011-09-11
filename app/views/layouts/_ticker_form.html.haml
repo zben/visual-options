@@ -1,0 +1,5 @@
+= form_for(:ticker, :url=>{ :action =>"change_ticker", :controller =>"stocks"}) do |f|
+    =f.text_field :ticker 
+    =f.submit 'Submit'
+    
+
