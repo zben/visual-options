@@ -6,10 +6,10 @@ class StocksController < ApplicationController
   end
 
   def show
-    $ticker=session[:ticker] || "GE"
-    @image_path=getSavedImageName("/quotetools/getChart?webmasterId=91004&snap=true&symbol="+$ticker+"&chscale=2d&chtype=AreaChart&locale=en_US&chwid=300&chhig=300&chpccol=ff0000&chfrmon=false&chton=false&chpcon=true")  
-    @full_image_path="http://app.quotemedia.com/quotetools/getChart?webmasterId=91004&snap=true&symbol="+$ticker+"&chscale=2d&chtype=AreaChart&locale=en_US&chwid=300&chhig=300&chpccol=ff0000&chfrmon=false&chton=false&chpcon=true"
-    #@array=topGainer()
+#    $ticker=session[:ticker] || "GE"
+#    @image_path=getSavedImageName("/quotetools/getChart?webmasterId=91004&snap=true&symbol="+$ticker+"&chscale=2d&chtype=AreaChart&locale=en_US&chwid=300&chhig=300&chpccol=ff0000&chfrmon=false&chton=false&chpcon=true")  
+#    @full_image_path="http://app.quotemedia.com/quotetools/getChart?webmasterId=91004&snap=true&symbol="+$ticker+"&chscale=2d&chtype=AreaChart&locale=en_US&chwid=300&chhig=300&chpccol=ff0000&chfrmon=false&chton=false&chpcon=true"
+#    #@array=topGainer()
     
   end
   
