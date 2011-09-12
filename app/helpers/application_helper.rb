@@ -27,16 +27,17 @@ module ApplicationHelper
     end
 
     def expiration_list()
+      session[:expiration_list]=nil
       if session[:expiration_list].nil?
         session[:expiration_list]={}
         for i in 0..3 do 
           date = Chronic.parse("3rd saturday in #{i.month.since.strftime('%B')}")
-          session[:expiration_list][date.stamp('Sep 16, 2011').to_s] = date.stamp('99/01/31').gsub('/','')
+          session[:expiration_list][date.stamp('Sat, Sep 16, 2011').to_s] = date.stamp('99/01/31').gsub('/','')
         end
-        weekly1 = Chronic.parse("this saturday")
-        session[:expiration_list][weekly1.stamp('Sep 16, 2011').to_s] = weekly1.stamp('99/01/31').gsub('/','')
-        weekly2=Chronic.parse("last saturday")
-        session[:expiration_list][weekly2.stamp('Sep 16, 2011').to_s] = weekly2.stamp('99/01/31').gsub('/','')
+        weekly1 = Chronic.parse("this friday")
+        session[:expiration_list][weekly1.stamp('Fri, Sep 16, 2011').to_s] = weekly1.stamp('99/01/31').gsub('/','')
+        weekly2=Chronic.parse("last friday")
+        session[:expiration_list][weekly2.stamp('Fri, Sep 16, 2011').to_s] = weekly2.stamp('99/01/31').gsub('/','')
       end
       session[:expiration_list]
     end
