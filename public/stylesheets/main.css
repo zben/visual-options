@@ -1,0 +1,55 @@
+body{
+   font-family:arial
+}
+
+.main_column{
+    float:left;
+    width:70%;
+
+}
+.right_side{
+    float:left;
+    width:30%;
+}
+
+.debug{
+    float:left;
+    clear:both;
+
+}
+
+select, input{
+    min-width:150px;
+}
+select#expiration{
+    height:100px;
+}
+select#duration{
+    height:110px;
+}
+select#option_type{
+    height:30px;
+}
+select#strike_list{
+    height:250px;
+}
+input#submit{
+    height:50px;
+}
+.label{
+    margin-top:10px;
+    margin-bottom:5px;
+}
+.right_left{
+    float:left;
+    width:50%;
+} 
+.right_right{
+    float:left;
+    width:50%;
+
+}
+input#strike{
+    min-width:0px;
+    width:120px;
+}
