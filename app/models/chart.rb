@@ -26,6 +26,22 @@ class Chart
   end
   
   def self.getprice(price)
-   "%08d" % (price*1000)
-  end 
+   "%08d" % (price.to_f*1000)
+  end
+  
+  def self.getquote(ticker)
+    require 'open-uri'
+    open("http://finance.yahoo.com/d/quotes.csv?s=#{ticker}&f=l1").read().to_f
+  end
+  
+  def self.get_strike_prices(ticker)
+    price = self.getquote(ticker)
+    if price > 100
+      Hash[*(-4..4).collect{|x| 5*(price.to_i/5)+x*5}.collect{|v| ["#{v.to_s}   (%.1f %%)" % (v*100/price-100),v]}.flatten]
+    elsif price >10
+      Hash[*(-4..4).collect{|x| price.to_i+x}.collect{|v| ["#{v.to_s}   (%.1f %%)" % (v*100/price-100),v]}.flatten]
+    else
+      Hash[*(-4..8).collect{|x| price.to_i+x*0.5}.collect{|v| ["#{v.to_s}   (%.1f %%)" % (v*100/price-100),v]}.flatten]
+    end
+  end  
 end

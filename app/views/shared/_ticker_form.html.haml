@@ -1,15 +1,19 @@
 = form_tag stock_show_path do
-    .label="Stock"
-    =text_field_tag :ticker,session[:ticker]
-    .label="Span"
-    =select_tag "duration", options_for_select(duration_select,[session[:duration]]) , {:multiple=>true}
-    .label="Type"
-    =select_tag "option_type", options_for_select(option_type,[session[:option_type]]) , {:multiple=>true}
-    .label="Expiration"
-    =select_tag "expiration", options_for_select(expiration_list,[session[:expiration]]) , {:multiple=>true}
-    .label="Strike"
-    =text_field_tag :strike, session[:strike]
-    
-    =submit_tag 'Submit'
+    .right_left
+        .label="Stock"
+        =text_field_tag :ticker,session[:ticker]
+        .label="Span"
+        =select_tag "duration", options_for_select(duration_select,[session[:duration]]) , {:multiple=>true}
+        .label="Type"
+        =select_tag "option_type", options_for_select(option_type,[session[:option_type]]) , {:multiple=>true}
+        .label="Expiration"
+        =select_tag "expiration", options_for_select(expiration_list,[session[:expiration]]) , {:multiple=>true}
+        
+    .right_right
+        .label="Strike"
+        =text_field_tag :strike, session[:strike]
+        =check_box_tag :manual_strike, "Manual",session[:manual_strike]
+        =select_tag "strike_list",options_for_select(Chart.get_strike_prices(session[:ticker]),session[:strike]),{:multiple=>true}
+    =submit_tag 'Submit',:id=>"submit"
     
 
