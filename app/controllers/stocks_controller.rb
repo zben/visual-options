@@ -2,11 +2,11 @@ class StocksController < ApplicationController
 
   def show
     session[:ticker] = (params[:ticker] || "SPY").upcase
-    session[:duration] =  (params[:duration] || ["10d"])[0]
+    session[:duration] =  (params[:duration] || ["5d"])[0]
     session[:option_type]=(params[:option_type] || ["P"])[0]
     session[:manual_strike]=params[:manual_strike]
-    session[:strike]= session[:manual_strike]== "Manual" ? (params[:strike] || 100) : params[:strike_list][0] 
-    session[:expiration]=(params[:expiration] || ["1109017"])[0]
+    session[:strike]= (session[:manual_strike]== "Manual" || !params[:strike_list].present?) ? (params[:strike] || 100) : params[:strike_list][0] 
+    session[:expiration]=(params[:expiration] || ["110917"])[0]
 
     @option=Chart.save_image(session[:ticker],
                                 session[:duration],
