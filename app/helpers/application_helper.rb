@@ -27,7 +27,7 @@ module ApplicationHelper
     end
 
     def expiration_list()
-      session[:expiration_list]=nil
+      #session[:expiration_list]=nil
       if session[:expiration_list].nil?
         session[:expiration_list]={}
         for i in 0..3 do 
