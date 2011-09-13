@@ -1,1 +1,1 @@
-=select_tag "strike_list",options_for_select(Chart.get_strike_prices(ticker),session[:strike]),{:multiple=>true}
+=select_tag "strike_list",options_for_select(Chart.get_strike_prices(session[:ticker]),session[:strike]),{:multiple=>true}
