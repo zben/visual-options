@@ -1,4 +1,4 @@
-= form_tag stock_show_path do
+= form_tag stock_show_path, :remote=>true do
     .right_left
         .label="Stock"
         =text_field_tag :ticker,session[:ticker]

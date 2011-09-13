@@ -1,6 +1,6 @@
 .main_column
-    =image_tag retrieve_image_path(@option)
-    =image_tag retrieve_image_path(@stock)
+    =image_tag retrieve_image_path(@option), :id=>:option
+    =image_tag retrieve_image_path(@stock), :id=>:stock
 .right_side
     =render 'shared/logo'
-    =render "shared/ticker_form"
+    #ticker_form=render "shared/ticker_form"

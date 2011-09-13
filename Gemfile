@@ -5,6 +5,7 @@ gem 'haml'
 gem 'haml-rails'
 gem 'chronic'
 gem 'stamp'
+gem 'jquery-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

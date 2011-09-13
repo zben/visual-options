@@ -7,7 +7,7 @@ class Chart
       "/quotetools/getChart?webmasterId=91004&snap=true&symbol=#{ticker}&chscale=#{duration}&chtype=AreaChart&locale=en_US&chwid=#{CHART_WIDTH}&chhig=#{CHART_HEIGHT}&chpccol=ff0000&chfrmon=false&chton=false&chpcon=true"  
     else    
       
-      "/quotetools/getChart?webmasterId=91004&snap=true&symbol=@#{ticker}%20%20%20#{expiration}#{type}#{self.getprice(strike)}&chscale=#{duration}&chtype=AreaChart&locale=en_US&chwid=#{CHART_WIDTH}&chhig=#{CHART_HEIGHT}&chpccol=ff0000&chfrmon=false&chton=false&chpcon=true"  
+      "/quotetools/getChart?webmasterId=91004&snap=true&symbol=@#{ticker.ljust(6).gsub(' ','%20')}#{expiration}#{type}#{self.getprice(strike)}&chscale=#{duration}&chtype=AreaChart&locale=en_US&chwid=#{CHART_WIDTH}&chhig=#{CHART_HEIGHT}&chpccol=ff0000&chfrmon=false&chton=false&chpcon=true"  
     end
   end
  
@@ -43,5 +43,7 @@ class Chart
     else
       Hash[*(-4..8).collect{|x| price.to_i+x*0.5}.collect{|v| ["#{v.to_s}   (%.1f %%)" % (v*100/price-100),v]}.flatten]
     end
-  end  
+  end 
+  
+
 end

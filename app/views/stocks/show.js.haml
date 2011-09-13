@@ -1,0 +1,9 @@
+d = new Date();
+$("img#option").attr("src", "/retrieve/option?"+d.getTime());
+-if @duration_changed
+    $('img#stock').attr("src", "/retrieve/stock?"+d.getTime());
+-if @ticker_changed
+    $('select#strike_list').replaceWith("#{escape_javascript render 'shared/strike_list'}")
+
+
+

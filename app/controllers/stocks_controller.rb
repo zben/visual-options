@@ -1,7 +1,9 @@
 class StocksController < ApplicationController
 
   def show
+    @ticker_changed = session[:ticker] != params[:ticker]
     session[:ticker] = (params[:ticker] || "SPY").upcase
+    @duration_changed = session[:duration] != params[:duration]
     session[:duration] =  (params[:duration] || ["5d"])[0]
     session[:option_type]=(params[:option_type] || ["P"])[0]
     session[:manual_strike]=params[:manual_strike]
@@ -17,6 +19,10 @@ class StocksController < ApplicationController
     @stock=Chart.save_image(session[:ticker],
                                 session[:duration])
 
+    respond_to do |format|
+      format.html 
+      format.js 
+    end
   end
   
   def retrieve

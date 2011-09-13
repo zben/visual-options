@@ -1,0 +1,6 @@
+alert("enter hello");
+$('input#ticker').keyup(function() {
+    alert("hello")    
+    -session[:ticker]= $('input#ticker').val().toUpperCase()
+    $('select#strike_list').replaceWith("#{escape_javascript render 'shared/strike_list'}");
+});
