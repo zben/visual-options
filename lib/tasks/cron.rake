@@ -6,12 +6,10 @@ task :cron => :environment do
 #    puts "done."
 #  end
 
-  if Time.now.hour == 17 and Time. # run at 5pm
-    Rank.download_data
-    Rank.compute_rank
-  end
-  
-  if Time.now.second == 1
-    Rank.do_nothing
-  end
+#  if Time.now.hour == 17 and Time. # run at 5pm
+#    Rank.download_data
+#    Rank.compute_rank
+#  end
+  Rank.do_nothing
+ 
 end
