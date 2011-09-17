@@ -16,14 +16,38 @@ function drawVisualization() {
     data.setValue(<%=index%>, 7, <%=rank.related_rank('SPY').total_rank*100%>);
     data.setValue(<%=index%>, 10, <%=rank.related_rank('QQQ').total_rank*100%>);        
   <%end%>
-  
-      
-      var annotatedtimeline = new google.visualization.AnnotatedTimeLine(
-          document.getElementById('visualization'));
-      annotatedtimeline.draw(data, {'displayAnnotations': true});
-    }
     
+  var annotatedtimeline = new google.visualization.AnnotatedTimeLine(
+    document.getElementById('ranking'));
+  annotatedtimeline.draw(data, {'displayAnnotations': true});
+}
+    
+
+  
+function drawVisualization2() {
+  var data2 = new google.visualization.DataTable();
+  data2.addColumn('date', 'Date');
+  data2.addColumn('number', '20 SMA');data2.addColumn('string', 'title1');data2.addColumn('string', 'text1');
+  data2.addColumn('number', '50 SMA');data2.addColumn('string', 'title2');data2.addColumn('string', 'text2');
+  data2.addColumn('number', '200 SMA');data2.addColumn('string', 'title3');data2.addColumn('string', 'text3');
+  data2.addRows(<%=@ranks.count%>);
+  <%@ranks.each_with_index do |rank, index|%>
+    data2.setValue(<%=index%>, 0, new Date(<%=rank.date.year%>, <%=rank.date.month%> ,<%=rank.date.day%>));
+    data2.setValue(<%=index%>, 1, <%=-rank.sma20%>);
+    data2.setValue(<%=index%>, 4, <%=-rank.sma50%>);
+    data2.setValue(<%=index%>, 7, <%=-rank.sma200%>);
+  <%end%>
+    
+      
+  var annotatedtimeline2 = new google.visualization.AnnotatedTimeLine(
+    document.getElementById('sma'));
+  annotatedtimeline2.draw(data2, {'displayAnnotations': true});
+
+}        
     google.setOnLoadCallback(drawVisualization);
+    google.setOnLoadCallback(drawVisualization2);
 </script>  
-<div id="visualization" style="width: 800px; height: 400px;"></div>
+<img class="chart" id="finviz" src="http://finviz.com/chart.ashx?t=<%=@ticker%>&ty=c&ta=1&p=d&s=l"   />
+<div class="chart" id="ranking" style="width: 600px; height: 300px;"></div>
+<div class="chart" id="sma" style="width: 600px; height: 300px;"></div>
 

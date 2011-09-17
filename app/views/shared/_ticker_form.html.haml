@@ -1,7 +1,7 @@
 = form_tag stock_show_path, :remote=>true do
     .right_left
         .label="Stock"
-        =text_field_tag :ticker,session[:ticker] #,:onkeyup=>'submitclick()'
+        =text_field_tag :ticker,session[:ticker]
         .label="Span"
         =select_tag "duration", options_for_select(duration_select,[session[:duration]]) , {:multiple=>true}
         .label="Type"
@@ -13,13 +13,12 @@
         .label="Strike"
         =text_field_tag :strike, session[:strike]
         =check_box_tag :manual_strike, "Manual",session[:manual_strike]
-        =select_tag "strike_list",options_for_select(Chart.get_strike_prices(session[:ticker]),session[:strike]),{:multiple=>true}
+        #select_box=select_tag "strike_list",options_for_select(Chart.get_strike_prices(session[:ticker]),[session[:strike]]),{:multiple=>true}
     =submit_tag 'Submit',:id=>"submit"
     
-//:javascript
-//  
-//    function submitclick(){
-//        $('input#submit').click()
-//    }
+:javascript
+    $('#ticker').live('keyup',function(){
+      $('#select_box').load('/load_strike_list',{new_ticker:$("#ticker").val()});   
+    });
 
 

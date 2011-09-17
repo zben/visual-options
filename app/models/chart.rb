@@ -11,9 +11,10 @@ class Chart
     end
   end
  
-  def self.save_image(ticker, duration, expiration=nil, strike=nil, type=nil)
+  def self.save_image(ticker, session_id, duration, expiration=nil, strike=nil, type=nil)
     require 'net/http'
     $file_name = type==nil ? 'stock' : 'option'
+    $file_name += session_id 
     
       url = self.get_stock_url(ticker, duration, expiration, strike, type)
       Net::HTTP.start("app.quotemedia.com") { |http|
@@ -22,6 +23,27 @@ class Chart
          file.write(resp.body)
         }
       }
+      $file_name
+  end
+  
+  def self.save_option_images(ticker,duration, type)
+    require 'net/http'
+    image_info=[]
+      expiration_list.each do |date|
+        fixed_date_image_info=[]
+        get_strike_prices(ticker) do |strike|
+        
+          url = self.get_stock_url(ticker, duration, date.value, strike.value, type)
+          Net::HTTP.start("app.quotemedia.com") { |http|
+            resp = http.get(url)
+            save_path="tmp/#{ticker}#{date.key}#{strike.key}.png"
+            open(save_path, "wb") { |file|
+             file.write(resp.body)
+            }
+          }
+          fixed_date_image_info << {'#{strike.key}'=>'save_path'}
+        end
+      end
       $file_name
   end
   
@@ -44,6 +66,6 @@ class Chart
       Hash[*(-4..8).collect{|x| price.to_i+x*0.5}.collect{|v| ["#{v.to_s}   (%.1f %%)" % (v*100/price-100),v]}.flatten]
     end
   end 
-  
+
 
 end

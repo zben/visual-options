@@ -53,3 +53,6 @@ input#strike{
     min-width:0px;
     width:120px;
 }
+.chart {
+    float:left;
+}

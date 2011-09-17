@@ -9,6 +9,7 @@ Thegame::Application.routes.draw do
 
   match "stocks/show" =>"stocks#show", :as=>"stock_show"
   
+  match "load_strike_list"=>"stocks#load_strike_list"
   
   match "stocks/change_ticker"=>"stocks#change_ticker"
   match "ranking/:ticker"=>"stocks#show_ranking", :as=>'show_ranking'

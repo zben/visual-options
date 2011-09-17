@@ -35,9 +35,7 @@ class Rank < ActiveRecord::Base
     end 
   end
   
-  def chart_code(with_reference=False, duration=10, industry=False)
 
-  end
 
     
   def self.today
@@ -54,5 +52,8 @@ class Rank < ActiveRecord::Base
   
   def related_rank(ticker)
     Stock.where(:ticker=>ticker)[0].ranks.on(date)[0]
+  end
+  
+  def do_nothing
   end
 end
