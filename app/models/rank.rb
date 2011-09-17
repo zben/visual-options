@@ -54,6 +54,6 @@ class Rank < ActiveRecord::Base
     Stock.where(:ticker=>ticker)[0].ranks.on(date)[0]
   end
   
-  def do_nothing
+  def self.do_nothing
   end
 end
