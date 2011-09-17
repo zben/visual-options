@@ -1,4 +1,8 @@
 Thegame::Application.routes.draw do
+  get "ranks/show"
+
+  get "ranks/index"
+
   get "notes/create"
 
   get "notes/destroy"
@@ -7,7 +11,7 @@ Thegame::Application.routes.draw do
   
   
   match "stocks/change_ticker"=>"stocks#change_ticker"
-  
+  match "ranking/:ticker"=>"stocks#show_ranking", :as=>'show_ranking'
   get "stocks/options"
 
   get "stocks/sma"

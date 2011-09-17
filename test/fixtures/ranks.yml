@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  stock_id: 1
+  close_price: 1.5
+  volume: 1
+  sma20: 1.5
+  sma50: 1.5
+  sma200: 1.5
+  date: 2011-09-13 23:45:33
+  industry_rank: 1.5
+  total_rank: 1.5
+
+two:
+  stock_id: 1
+  close_price: 1.5
+  volume: 1
+  sma20: 1.5
+  sma50: 1.5
+  sma200: 1.5
+  date: 2011-09-13 23:45:33
+  industry_rank: 1.5
+  total_rank: 1.5

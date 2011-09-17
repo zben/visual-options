@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  ticker: MyString
+  name: MyString
+  industry_id: 1
+  capitalization: 1
+
+two:
+  ticker: MyString
+  name: MyString
+  industry_id: 1
+  capitalization: 1

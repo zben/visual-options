@@ -25,6 +25,10 @@ class StocksController < ApplicationController
     end
   end
   
+  def show_ranking
+    @ranks = Stock.where(:ticker=>params[:ticker])[0].ranks
+  end
+
   def retrieve
     File.open("tmp/#{params[:file_name]}.png", 'rb') do |f|
       send_data f.read, :type => "image/png", :disposition => "inline"

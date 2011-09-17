@@ -1,0 +1,29 @@
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+google.load('visualization', '1', {packages: ['annotatedtimeline']});
+function drawVisualization() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('date', 'Date');
+  data.addColumn('number', 'Total Rank');data.addColumn('string', 'title1');data.addColumn('string', 'text1');
+  data.addColumn('number', 'Industry Rank');data.addColumn('string', 'title2');data.addColumn('string', 'text2');
+  data.addColumn('number', 'SPY Rank');data.addColumn('string', 'title3');data.addColumn('string', 'text3');
+  data.addColumn('number', 'QQQ Rank');data.addColumn('string', 'title4');data.addColumn('string', 'text4');
+  data.addRows(<%=@ranks.count%>);
+  <%@ranks.each_with_index do |rank, index|%>
+    data.setValue(<%=index%>, 0, new Date(<%=rank.date.year%>, <%=rank.date.month%> ,<%=rank.date.day%>));
+    data.setValue(<%=index%>, 1, <%=rank.total_rank*100%>);
+    data.setValue(<%=index%>, 4, <%=rank.industry_rank*100%>);
+    data.setValue(<%=index%>, 7, <%=rank.related_rank('SPY').total_rank*100%>);
+    data.setValue(<%=index%>, 10, <%=rank.related_rank('QQQ').total_rank*100%>);        
+  <%end%>
+  
+      
+      var annotatedtimeline = new google.visualization.AnnotatedTimeLine(
+          document.getElementById('visualization'));
+      annotatedtimeline.draw(data, {'displayAnnotations': true});
+    }
+    
+    google.setOnLoadCallback(drawVisualization);
+</script>  
+<div id="visualization" style="width: 800px; height: 400px;"></div>
+
