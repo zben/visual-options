@@ -26,7 +26,7 @@ class StocksController < ApplicationController
   end
   
   def show_ranking
-    @ranks = Stock.where(:ticker=>params[:ticker])[0].ranks
+    @ranks = Stock.where(:ticker=>params[:ticker].upcase)[0].ranks
   end
 
   def retrieve
