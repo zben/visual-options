@@ -4,12 +4,13 @@ class StocksController < ApplicationController
   def show
     @ticker_changed = session[:ticker] != params[:ticker]
     session[:ticker] = (params[:ticker] || session[:ticker] || "SPY").upcase
+    session[:new_strike] = Chart.get_strike_prices(session[:ticker]).values[7] if @ticker_changed
     @duration_changed = session[:duration] != params[:duration]
     session[:duration] = params[:duration].nil? ? session[:duration] || "5d" : params[:duration][0]
     session[:option_type]=params[:option_type].nil? ? session[:option_type] || "P" : params[:option_type][0]
     session[:manual_strike]=params[:manual_strike]
     session[:strike]= (session[:manual_strike]== "Manual" || !params[:strike_list].present?) ? 
-      (params[:strike] || session[:strike] || Chart.get_strike_prices(session[:ticker]).values[5]) : params[:strike_list][0] 
+      ( session[:new_strike] || params[:strike] || session[:strike] || Chart.get_strike_prices(session[:ticker]).values[5]) : params[:strike_list][0] 
     session[:expiration]= params[:expiration].nil? ? session[:expiration] || expiration_list.values[0] : params[:expiration][0]
 
     @option=Chart.save_image(session[:ticker],

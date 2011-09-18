@@ -58,10 +58,10 @@ class Chart
   
   def self.get_strike_prices(ticker)
     price = self.getquote(ticker)
-    if price > 100
-      Hash[*(-6..6).collect{|x| 5*(price.to_i/5)+x*5}.collect{|v| ["#{v.to_s}   (%.1f %%)" % (v*100/price-100),v]}.flatten]
+    if price > 100 and ticker.upcase!="SPY"
+      Hash[*(-8..8).collect{|x| 5*(price.to_i/5)+x*5}.collect{|v| ["#{v.to_s}   (%.1f %%)" % (v*100/price-100),v]}.flatten]
     elsif price >10
-      Hash[*(-6..6).collect{|x| price.to_i+x}.collect{|v| ["#{v.to_s}   (%.1f %%)" % (v*100/price-100),v]}.flatten]
+      Hash[*(-8..8).collect{|x| price.to_i+x}.collect{|v| ["#{v.to_s}   (%.1f %%)" % (v*100/price-100),v]}.flatten]
     else
       Hash[*(-4..8).collect{|x| price.to_i+x*0.5}.collect{|v| ["#{v.to_s}   (%.1f %%)" % (v*100/price-100),v]}.flatten]
     end
