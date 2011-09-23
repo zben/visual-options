@@ -31,14 +31,16 @@ module ApplicationHelper
       if session[:expiration_list].nil?
         session[:expiration_list]={}
         for i in 0..3 do 
-          date = Chronic.parse("3rd friday in #{i.month.since.strftime('%B')}")
-          date +=3600*24
-          session[:expiration_list][date.stamp('Sat, Sep 16, 2011').to_s] = date.stamp('99/01/31').gsub('/','')
+          date = Chronic.parse("3rd friday in #{i.month.since.strftime('%B')}").to_date
+          date += 1
+          session[:expiration_list][date.stamp('Sat, Sep 16, 2011').to_s+' ( %i)'% (date-Date.today)] = date.stamp('99/01/31').gsub('/','')
         end
-        weekly1 = Chronic.parse("this friday")
-        session[:expiration_list][weekly1.stamp('Fri, Sep 16, 2011').to_s] = weekly1.stamp('99/01/31').gsub('/','')
-        weekly2=Chronic.parse("last friday")
-        session[:expiration_list][weekly2.stamp('Fri, Sep 16, 2011').to_s] = weekly2.stamp('99/01/31').gsub('/','')
+        next_friday = Chronic.parse("next friday").to_date
+        for i in 0..2 do
+          date=next_friday - i*7
+          session[:expiration_list][date.stamp('Fri, Sep 16, 2011').to_s+' ( %i)'% (date-Date.today)] = date.stamp('99/01/31').gsub('/','')
+        end
+        
       end
       session[:expiration_list]
     end

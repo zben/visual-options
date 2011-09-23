@@ -11,7 +11,7 @@ class StocksController < ApplicationController
     session[:manual_strike]=params[:manual_strike]
     session[:strike]= (session[:manual_strike]== "Manual" || !params[:strike_list].present?) ? 
       ( session[:new_strike] || params[:strike] || session[:strike] || Chart.get_strike_prices(session[:ticker]).values[5]) : params[:strike_list][0] 
-    session[:expiration]= params[:expiration].nil? ? session[:expiration] || expiration_list.values[0] : params[:expiration][0]
+    session[:expiration]= params[:expiration].nil? ? session[:expiration] || expiration_list.values[1] : params[:expiration][0]
 
     @option=Chart.save_image(session[:ticker],
                                 session[:session_id],

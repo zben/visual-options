@@ -1,4 +1,6 @@
 class Rank < ActiveRecord::Base
+  
+  include RanksHelper
   belongs_to :stock
   
   def self.download_data
