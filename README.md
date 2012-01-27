@@ -1,5 +1,5 @@
 ## Stock Option Price Chart Browser
-**website:** http://optionben.heroku.com, not the latest version yet.
+**website:** http://optionben.heroku.com, online version is not the latest version and just shows the idea.
 
 ### Why this site?
 Stock traders use stock charts all the time. There are lots of site to give you that. But there are not a lot of free sites that give you option price chart. While the chart itself might not allows you to place sure-win trades, at least it can teach you about what happened in the past and learn about the behavior of option prices. The only site I know that give you option chart is quotemedia.com. However, to see any one chart, you need to click on ten things to get to that chart and yes, you get a tiny chart that you can't do much about.
